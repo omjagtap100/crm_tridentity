@@ -2,15 +2,16 @@ pipeline {
     agent any
 
     stages {
+
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Start Server') {
             steps {
-                sh 'npm run start'
+                bat 'start /B npm run start'
             }
         }
     }
