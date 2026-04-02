@@ -26,4 +26,13 @@ const config = {
     },
 };
 
-export default config;
+export const bucket = {
+    TENCENT_BUCKET: process.env.TENCENT_BUCKET,
+    TENCENT_BUCKET_REGION: process.env.TENCENT_BUCKET_REGION,
+    TENCENT_SECRET_ID: process.env.TENCENT_SECRET_ID,
+    TENCENT_SECRET_KEY: process.env.TENCENT_SECRET_KEY,
+};
+
+const envConfig = { ...config, bucket };
+
+export default envConfig;
