@@ -31,6 +31,7 @@ crm_category_api.get(ns, ...guard, async (req, res, next) => {
     }
 });
 
+
 /**
  * @swagger
  * /api/v1/crm/categories:
