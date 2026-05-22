@@ -2,7 +2,7 @@
 
 project           = "ecomsaas"
 location          = "australiaeast"
-app_service_sku   = "P1v2"
+app_service_sku   = "S1"   # Standard supports deployment slots; avoid B1 (no slots)
 vm_size           = "Standard_D2s_v3"
 vm_admin_username = "azureuser"
 

@@ -11,9 +11,9 @@ variable "location" {
 }
 
 variable "app_service_sku" {
-  description = "App Service Plan SKU. Needs a tier that supports deployment slots (P1v2+)."
+  description = "App Service Plan SKU. Needs a tier that supports deployment slots: S1+ (Standard) or P1v2+ (Premium). Avoid B1 — Basic has no slots."
   type        = string
-  default     = "P1v2"
+  default     = "S1"
 }
 
 variable "vm_size" {

@@ -33,12 +33,23 @@ resource "azurerm_container_registry" "acr" {
 
 #############################################
 # Application Insights (App Service monitoring)
+# Workspace-based (classic AI is retired — Azure requires a Log Analytics workspace).
 #############################################
+resource "azurerm_log_analytics_workspace" "law" {
+  name                = "${local.prefix}-law"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+  tags                = local.tags
+}
+
 resource "azurerm_application_insights" "appi" {
   name                = "${local.prefix}-appi"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   application_type    = "Node.JS"
+  workspace_id        = azurerm_log_analytics_workspace.law.id
   tags                = local.tags
 }
 
