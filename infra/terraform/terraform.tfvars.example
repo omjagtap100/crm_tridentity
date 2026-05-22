@@ -1,0 +1,17 @@
+# Copy to terraform.tfvars and fill in. Do NOT commit terraform.tfvars.
+
+project           = "ecomsaas"
+location          = "australiaeast"
+app_service_sku   = "P1v2"
+vm_size           = "Standard_D2s_v3"
+vm_admin_username = "azureuser"
+
+# Contents of your public key, e.g. cat ~/.ssh/id_rsa.pub
+vm_ssh_public_key = "ssh-rsa AAAA... you@host"
+
+# Your current public IP /32 — get it with: curl -s ifconfig.me
+allowed_admin_cidr = "203.0.113.10/32"
+
+mysql_admin_username = "ecomadmin"
+db_name              = "ecom_saas_db"
+image_name           = "ecom-saas"

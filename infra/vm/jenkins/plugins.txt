@@ -1,0 +1,15 @@
+workflow-aggregator
+git
+github
+github-branch-source
+pipeline-stage-view
+docker-workflow
+credentials-binding
+junit
+warnings-ng
+sonar
+htmlpublisher
+timestamper
+ws-cleanup
+ansicolor
+configuration-as-code

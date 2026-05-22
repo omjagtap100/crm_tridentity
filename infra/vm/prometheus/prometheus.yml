@@ -1,0 +1,40 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ["alertmanager:9093"]
+
+rule_files:
+  - /etc/prometheus/alert.rules.yml
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: node
+    static_configs:
+      - targets: ["node-exporter:9100"]
+
+  # Production app on Azure App Service.
+  # Replace __APP_HOSTNAME__ with your terraform output `app_default_hostname`
+  # (without https://), e.g. ecomsaas-app.azurewebsites.net
+  - job_name: ecom-app
+    scheme: https
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["__APP_HOSTNAME__:443"]
+        labels:
+          env: production
+
+  # Staging slot (optional) — replace __STAGING_HOSTNAME__ or remove this block.
+  - job_name: ecom-app-staging
+    scheme: https
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["__STAGING_HOSTNAME__:443"]
+        labels:
+          env: staging

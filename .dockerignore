@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log
+.env
+.env.*
+!.env.example
+uploads
+coverage
+tests
+.git
+.gitignore
+docs
+infra
+reports
+scripts
+*.md
+Jenkinsfile
+7.3HD.pdf

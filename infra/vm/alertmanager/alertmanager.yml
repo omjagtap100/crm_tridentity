@@ -1,0 +1,30 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: default
+  group_by: ["alertname"]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 1h
+  routes:
+    - matchers:
+        - severity = "critical"
+      receiver: critical
+
+receivers:
+  - name: default
+    # Logs alerts; swap in a real Slack/email webhook for live notification.
+    webhook_configs:
+      - url: "http://host.docker.internal:9999/"
+        send_resolved: true
+
+  - name: critical
+    webhook_configs:
+      - url: "http://host.docker.internal:9999/"
+        send_resolved: true
+    # Example Slack integration (uncomment + set the webhook URL):
+    # slack_configs:
+    #   - api_url: "https://hooks.slack.com/services/XXX/YYY/ZZZ"
+    #     channel: "#alerts"
+    #     send_resolved: true
