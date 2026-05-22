@@ -1,6 +1,6 @@
 # Jenkins controller pre-loaded with the tools the pipeline needs:
 #   docker CLI (Build), Node 20 (Test), Azure CLI (Deploy/Release), Trivy (Security).
-FROM jenkins/jenkins:2.479.1-lts-jdk17
+FROM jenkins/jenkins:2.492.3-lts-jdk17
 
 USER root
 
