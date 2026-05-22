@@ -12,18 +12,22 @@ pipeline {
     }
 
     environment {
-        // --- edit these to match your terraform outputs ---
-        ACR_NAME        = 'ecomsaasacr'
-        ACR_LOGIN_SERVER = 'ecomsaasacr.azurecr.io'
-        RESOURCE_GROUP  = 'ecomsaas-rg'
-        APP_NAME        = 'ecomsaas-app'
-        IMAGE_NAME      = 'ecom-saas'
-        STAGING_SLOT    = 'staging'
-        SONAR_HOST_URL  = 'http://sonarqube:9000'
-        PROM_URL        = 'http://prometheus:9090'
-        // --- derived ---
-        PROD_URL        = "https://${APP_NAME}.azurewebsites.net"
-        STAGING_URL     = "https://${APP_NAME}-${STAGING_SLOT}.azurewebsites.net"
+        // ===== RENAME POINT (Jenkins) =====
+        // Set this to the SAME value as `project` in infra/terraform/terraform.tfvars.
+        // Everything below is derived from it — no other edits needed.
+        PROJECT          = 'ecomsaas'
+
+        // --- derived from PROJECT (match the terraform naming convention) ---
+        ACR_NAME         = "${PROJECT}acr"
+        ACR_LOGIN_SERVER = "${PROJECT}acr.azurecr.io"
+        RESOURCE_GROUP   = "${PROJECT}-rg"
+        APP_NAME         = "${PROJECT}-app"
+        IMAGE_NAME       = 'ecom-saas'
+        STAGING_SLOT     = 'staging'
+        SONAR_HOST_URL   = 'http://sonarqube:9000'
+        PROM_URL         = 'http://prometheus:9090'
+        PROD_URL         = "https://${PROJECT}-app.azurewebsites.net"
+        STAGING_URL      = "https://${PROJECT}-app-staging.azurewebsites.net"
     }
 
     stages {
