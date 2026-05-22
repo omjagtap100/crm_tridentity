@@ -17,3 +17,5 @@ infra/vm/.env
 reports/
 .DS_Store
 **/.DS_Store
+.claude/
+.vscode/
