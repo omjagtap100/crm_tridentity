@@ -14,8 +14,8 @@ pipeline {
     environment {
         // ===== RENAME POINT (Jenkins) =====
         // Set this to the SAME value as `project` in infra/terraform/terraform.tfvars.
-        // Everything below is derived from it — no other edits needed.
-        PROJECT          = 'ecomsaas'
+        // Everything below is derived from it — no other edits are needed.
+        PROJECT          = 'omjecomsaas'
 
         // --- derived from PROJECT (match the terraform naming convention) ---
         ACR_NAME         = "${PROJECT}acr"

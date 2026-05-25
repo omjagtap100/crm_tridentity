@@ -79,17 +79,19 @@ az ad sp delete --id <appId-of-ecomsaas-jenkins>
 ### 0. Prerequisites (one-time, on your Machine)
 
 ```bash
-brew install terraform azure-cli
-az login
+#brew install terraform azure-cli
+#az login
 az account show --query id -o tsv          # note SUBSCRIPTION_ID
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/ecom_devops -N ""    # if you don't have a key
+mkdir .ssh && ssh-keygen -t rsa -b 4096 -f .ssh/ecom_devops -N ""
 ```
 
 ### 1. Provision Azure infra (Terraform)
 
 ```bash
+cat .ssh/ecom_devops.pub
 cd "infra/terraform"
 cp terraform.tfvars.example terraform.tfvars
+nano terraform.tfvars
 ```
 
 Edit `terraform.tfvars`:
@@ -119,7 +121,7 @@ terraform output -raw acr_login_server
 
 ```bash
 SUB=<SUBSCRIPTION_ID>
-az ad sp create-for-rbac --name yournewname-jenkins \
+az ad sp create-for-rbac --name om-jenkins \
   --role Contributor \
   --scopes /subscriptions/$SUB/resourceGroups/yournewname-rg
 # SAVE the output: appId (client id), password (client secret), tenant
@@ -151,7 +153,7 @@ NODE_ENV=production npm run migrate
 
 ```bash
 ssh -i ~/.ssh/ecom_devops azureuser@<vm_public_ip>
-git clone https://<gh-user>:<gh-PAT>@github.com/<you>/<repo>.git app   # PAT for private repos
+git clone https://github.com/omjagtap100/applied_software_eng_gp.git app   # PAT for private repos
 cd app/infra/vm
 cp .env.example .env
 nano .env                       # set SONAR_DB_PASSWORD + GRAFANA_ADMIN_PASSWORD
