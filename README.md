@@ -153,7 +153,7 @@ NODE_ENV=production npm run migrate
 
 ```bash
 ssh -i ~/.ssh/ecom_devops azureuser@<vm_public_ip>
-git clone https://github.com/omjagtap100/applied_software_eng_gp.git app   # PAT for private repos
+git clone https://github.com/omjagtap100/crm_tridentity.git app   # PAT for private repos
 cd app/infra/vm
 cp .env.example .env
 nano .env                       # set SONAR_DB_PASSWORD + GRAFANA_ADMIN_PASSWORD
